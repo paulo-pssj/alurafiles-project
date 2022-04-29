@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="contact-area section-padding-0-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Criar conta</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form action="{% url 'register' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="{{message.tags}}" role="alert">
+                                <span>{{message}}</span>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="col-12 col-lg-12">
+                                <label for="username"><b>Nome Completo</b></label>
+                                <input type="text" class="form-control" name="nome"
+                                    placeholder="Ex.: Paulo Sergio Silva Junior" required>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="email"><b>Email</b></label>
+                                <input type="email" class="form-control" name="email" placeholder="Ex.: paulo@email.com"
+                                    required>
+                            </div>
+                            <div class="col-12 mt-sm-2 text-center">
+                                <button class="btn btn-success" type="submit">Criar sua conta</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

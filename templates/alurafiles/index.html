@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header text-center py-3">
+      <h1>Alura Files<i class="fas fa-link px-2"></i></h1>
+    </div>
+    <div class="px-3 py-4">
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row g-1">
+          <div class="col-10">
+              <input type="file" id="file" name="file" accept=".csv, .xml" >
+              <label for="file">Selecione um arquivo para importar.</label>
+          </div>
+          <div class="col-2">
+            <button class="btn btn-success w-100" type="submit">
+                Importar
+            </button>
+          </div>
+        </div>
+      </form>
+      {% if messages %}
+      {% for message in messages %}
+        <div class="{{message.tags}}" role="alert">
+          <span>{{message}}</span>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% if data %}
+  <div class="row g-1">
+    <h2 class="text-center py-3">Transações Realizadas</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Data Transação</th>
+          <th scope="col">Data Importação</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in data %}
+        <tr>  
+          <td>{{d.transaction_date}}</td>
+          <td>{{d.created_at}}</td>
+          <td><a class="btn btn-primary" href="{% url 'detalhes' d.transaction_date %}" role="button">Detalhes</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock body %}

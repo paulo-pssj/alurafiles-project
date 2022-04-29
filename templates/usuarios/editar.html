@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h3>Editar Usuários</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>Todos os campos são obrigatórios</p>
+                <div class="contact-form-area">
+                    <form action="{% url 'atualiza_usuarios'%}" method="post" >
+                        {% csrf_token %}
+                        <input type="text" id="user_id" class="form-control" name="user_id" value="{{user.id}}" hidden>
+                        <div class="row">
+                            <div class="col-12 col-lg-12">
+                                <label for="nome"><b>Nome Completo</b></label>
+                                <input type="text" id="nome" class="form-control" name="nome"
+                                    placeholder="Ex.: Paulo Sergio" value="{{user.get_full_name}}" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="Email"><b>Email</b></label>
+                                <input type="text" class="form-control" name="email" placeholder="Ex.: paulo@email.com"
+                                    value="{{user.email}}" required>
+                            </div>
+                            <div class="col-12 mt-sm-2 text-center">
+                                <button class="btn btn-success" type="submit">Atualizar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

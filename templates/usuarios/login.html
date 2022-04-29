@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="section-heading text-center">
+                <h2>Login</h2>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="{{message.tags}}" role="alert">
+                <span>{{message}}</span>
+             </div>
+            {% endfor %}
+            {% endif %}
+            <div class="row justify-content-center">
+                <div class="col-3 ">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" id="email" class="form-control" name="email"
+                    placeholder="Entre com o email cadastrado">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <label for="senha"><b>Senha</b></label>
+                    <input id="senha" type="password" class="form-control" name="senha"
+                            placeholder="Digite aqui sua senha">
+                </div>
+            </div>
+             <div class="col-12 mt-sm-2 text-center">
+                <button class="btn btn-success" type="submit">Acessar sua conta</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

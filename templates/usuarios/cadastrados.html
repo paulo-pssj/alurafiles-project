@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+
+<div class="container">
+  <div class="card mt-5 mb-sm-2">
+    <div class="card-header text-center py-3">
+      <h1>Usuários Cadastrados</h1>
+    </div>
+  </div>
+  {% if users %}
+  <a class="btn btn-primary" href="{% url 'register' %}" role="button">Novo</a>
+  <div class="row mt-sm-2">
+    {% if messages %}
+    {% for message in messages %}
+        <div class="{{message.tags}}" role="alert">
+            <span>{{message}}</span>
+        </div>
+    {% endfor %}
+    {% endif %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        {% if user.username not in 'admin'%}
+        <tr>  
+          <td>{{user.id}}</td>
+          <td>{{user.get_full_name }}</td>
+          <td>{{user.email}}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'editar_usuarios' user.id %}" role="button">Atualizar</a>
+            <a class="btn btn-danger" href="{% url 'deletar' user.id %}" role="button">Deletar</a>
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock body %}
