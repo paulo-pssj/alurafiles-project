@@ -68,11 +68,14 @@ DATABASES = {
     }
 }
 ```
+
 altere o email e código de acesso do email para fazer o envio da senha por email (`settings.py`):
 ```
+
 EMAIL_HOST_USER = '[seu email]'
 EMAIL_HOST_PASSWORD = '[seu código de acesso gerado pelo gmail]'
 ```
+
 </br>
 - execute o comando: `python manage.py makemigrations` para criar as migrações do banco de dados;
 </br>
