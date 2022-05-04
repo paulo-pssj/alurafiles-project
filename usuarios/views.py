@@ -13,10 +13,9 @@ def register(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             nome = request.POST['nome']
+            first_name, last_name = nome.split(' ', 1)
             number = randint(0, 10000)
-            username = nome.split()[0] + str(number)
-            first_name = nome.split(' ', 1)[0]
-            last_name = nome.split(' ', 1)[1]
+            username = first_name + str(number)
             email = request.POST['email']
 
             if campo_vazio(nome):
@@ -79,7 +78,6 @@ def login(request):
             user = auth.authenticate(username=email, password=senha)
             if user is not None:
                 auth.login(request, user)
-                print('Login realizado com sucesso')
                 return redirect(index)
     return render(request, 'usuarios/login.html')
 
@@ -95,7 +93,7 @@ def usuarios_cadastrados(request):
         context = {'users': users}
         return render(request, 'usuarios/cadastrados.html', context=context)
     else:
-        return render(request, 'usuarios/login.html')
+        return redirect(login)
 
 
 def editar_usuarios(request, user_id):
@@ -104,7 +102,7 @@ def editar_usuarios(request, user_id):
         context = {'user': user}
         return render(request, 'usuarios/editar.html', context)
     else:
-        return redirect(index)
+        return redirect(login)
 
 
 def deletar(request, user_id):
@@ -119,7 +117,7 @@ def deletar(request, user_id):
         messages.error(request, 'Seu usuário não pode ser deletado.')
         return redirect('cadastrados')
     else:
-        return redirect(index)
+        return redirect(login)
 
 
 def campo_vazio(campo):
