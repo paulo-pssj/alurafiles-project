@@ -86,7 +86,7 @@ def analise_suspeitos(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             date = request.POST['data_analise']
-            ano, mes = date.split('/')
+            mes, ano = date.split('-')
 
             if (
                 transacoes_suspeitas(mes, ano).exists() == False
