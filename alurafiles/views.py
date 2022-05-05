@@ -86,10 +86,10 @@ def analise_suspeitos(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             date = request.POST['data_analise']
-            if 'Chrome' in request.POST['User-Agent']:
+            if 'Chrome' in request.headers['user-agent']:
                 ano, mes = date.split('-')
             
-            elif 'Firefox' in request.POST['User-Agent']:
+            elif 'Firefox' in request.headers['user-agent']:
                 mes, ano = date.split('-')
 
             if (
