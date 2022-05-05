@@ -3,7 +3,7 @@
 ## Descrição do Projeto
 Esse projeto desenvolvido com python e django tem como objetivo dispinibilizar uma aplicação web, onde após realizar o login tem acesso ao upload de arquivos (.csv e .xml) com dados de transações bancárias e outras funcionalidades.
 
-![Acesso ao site](https://alurafiles.herokuapp.com/)
+[Acesso ao site](https://alurafiles.herokuapp.com/)
 Login: usuario@usuario.com
 Senha: 123456
 
