@@ -16,7 +16,7 @@ from pathlib import Path
 import django_heroku
 
 # config heroku
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
