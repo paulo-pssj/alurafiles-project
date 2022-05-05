@@ -7,7 +7,7 @@
     <form action="{% url 'analise_suspeitos'%}" method="post" enctype='multipart-form-data'>
         {% csrf_token %}
         <label for="data_analise">Selecione o mês para analisar as transações</label>
-        <input id="data_analise" name="data_analise" type="month" pattern="[0-9]{2}-[0-9]{4}" required>
+        <input id="data_analise" name="data_analise" type="month" pattern="[0-9]{2}/[0-9]{4}" required>
         <input type="submit" class="btn btn-primary" placeholder="Realizar análise">
     </form>
     {% if messages %}
